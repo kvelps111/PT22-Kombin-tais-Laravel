@@ -28,6 +28,7 @@ class PostController extends Controller
         //     ->get();
 
         $posts = Post::all();
+        
         return view('post.index', ['posts' => $posts]);
     }
 
