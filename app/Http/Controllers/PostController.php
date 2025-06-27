@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\PostStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -28,7 +29,7 @@ class PostController extends Controller
         //     ->get();
 
         $posts = Post::all();
-        
+
         return view('post.index', ['posts' => $posts]);
     }
 
@@ -55,9 +56,11 @@ class PostController extends Controller
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('images', 'public');
+            $post->image_path = $path;
         }
 
         $post->save();
+        
 
         return redirect()->route('posts.index')->with('success', 'Post created successfully.');
     }
