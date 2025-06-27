@@ -88,6 +88,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->content = $request->content;
         $post->status_id = $request->status_id;
+        
 
         if ($request->hasFile('image')) {
             if ($post->image_path) {
